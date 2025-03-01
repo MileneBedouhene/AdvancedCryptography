@@ -1,8 +1,9 @@
 import string
 
+# Génère la matrice de chiffrement Playfair en fonction de la clé fournie
 def generate_playfair_matrix(key):
-    key = key.upper().replace("J", "I")
-    alphabet = string.ascii_uppercase.replace("J", "")
+    key = key.upper().replace("J", "I")  # Remplace 'J' par 'I' pour respecter la règle de Playfair
+    alphabet = string.ascii_uppercase.replace("J", "")  # Alphabet sans 'J'
     matrix = []
     used_chars = set()
     
@@ -19,6 +20,8 @@ def generate_playfair_matrix(key):
     
     return [matrix[i:i+5] for i in range(0, 25, 5)]
 
+# Formate le message en supprimant les caractères non alphabétiques, 
+# en remplaçant 'J' par 'I' et en s'assurant que les paires sont valides
 def format_message(message):
     message = ''.join([c.upper().replace("J", "I") for c in message if c.isalpha()])
     formatted = ""
@@ -36,6 +39,7 @@ def format_message(message):
     
     return formatted
 
+# Trouve la position d'un caractère dans la matrice Playfair
 def find_position(matrix, char):
     for row in range(5):
         for col in range(5):
@@ -43,6 +47,7 @@ def find_position(matrix, char):
                 return row, col
     raise ValueError(f"Le caractère {char} n'est pas trouvé dans la matrice.")
 
+# Chiffre un message en utilisant le chiffrement Playfair
 def playfair_encrypt(message, key):
     matrix = generate_playfair_matrix(key)
     message = format_message(message)
@@ -63,6 +68,7 @@ def playfair_encrypt(message, key):
     
     return cipher_text
 
+# Déchiffre un message en utilisant le chiffrement Playfair
 def playfair_decrypt(cipher_text, key):
     matrix = generate_playfair_matrix(key)
     message = ""
@@ -82,9 +88,35 @@ def playfair_decrypt(cipher_text, key):
     
     return message
 
-# Exemple d'utilisation
-message = "HELLO WORLD"
-key = "KEYWORD"
-cipher_text = playfair_encrypt(message, key)
-print("Texte chiffré:", cipher_text)
-print("Texte déchiffré:", playfair_decrypt(cipher_text, key))
+# Menu principal
+while True:
+    print("-" * 50)
+    print("1. Chiffrer un texte avec Playfair.")
+    print("2. Déchiffrer un texte avec Playfair.")
+    print("3. Quitter.")
+    print("-" * 50)
+    
+    try:
+        choix = int(input("Veuillez choisir une option : "))
+    except ValueError:
+        print("Veuillez entrer un nombre valide.")
+        continue
+    
+    if choix == 1:
+        texte = input("Entrez le texte à chiffrer : ")
+        clef = input("Entrez la clé de chiffrement : ")
+        resultat = playfair_encrypt(texte, clef)
+        print(f"Texte chiffré : {resultat}")
+    
+    elif choix == 2:
+        texte = input("Entrez le texte à déchiffrer : ")
+        clef = input("Entrez la clé de déchiffrement : ")
+        resultat = playfair_decrypt(texte, clef)
+        print(f"Texte déchiffré : {resultat}")
+    
+    elif choix == 3:
+        print("Au revoir!")
+        break
+    
+    else:
+        print("Option invalide. Veuillez choisir entre 1, 2 ou 3.")
