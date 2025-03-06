@@ -1,19 +1,32 @@
+import unicodedata
+import string
 from collections import Counter
 
-def indice_de_coincidence(texte):
-    texte = texte.upper()  # Convertir en majuscules pour uniformiser
-    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    n = len(texte)
-    
-    # Compter la fréquence de chaque lettre
-    freq = Counter(lettre for lettre in texte if lettre in alphabet)
-    
-    # Calculer l'indice de coïncidence
-    ic = sum(f * (f - 1) for f in freq.values()) / (n * (n - 1)) if n > 1 else 0
-    
-    return ic
+def normalize_text(text):
+    """
+    Convertit le texte en minuscules et supprime les accents.
+    """
+    text = unicodedata.normalize('NFD', text)
+    return ''.join(c for c in text if unicodedata.category(c) != 'Mn').lower()
+
+def indice_coincidence(text):
+    """
+    Calcule l'indice de coïncidence (IC) d'un texte.
+    La formule utilisée est : IC = sum(n_i*(n_i-1)) / (N*(N-1))
+    où n_i est le nombre d'occurrences de chaque lettre et N le nombre total de lettres.
+    """
+    text = normalize_text(text)
+    # Conserver uniquement les lettres a-z
+    letters = [c for c in text if c in string.ascii_lowercase]
+    N = len(letters)
+    if N <= 1:
+        return 0
+    counts = Counter(letters)
+    somme = sum(n * (n - 1) for n in counts.values())
+    return somme / (N * (N - 1))
 
 # Exemple d'utilisation
-texte_chiffre = "WXYZZWXYZZWXYZZWXYZ"  # Exemple de texte chiffré
-ic = indice_de_coincidence(texte_chiffre)
-print(f"Indice de coïncidence: {ic:.5f}")
+if __name__ == '__main__':
+    texte_exemple = "Là plùs béllè pérsònné âù mónde, ç'est tɔî."
+    ic = indice_coincidence(texte_exemple)
+    print(f"Indice de coïncidence : {ic:.4f}")
