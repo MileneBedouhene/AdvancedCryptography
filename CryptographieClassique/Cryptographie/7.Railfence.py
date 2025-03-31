@@ -59,7 +59,7 @@ def RaildecipherText(cipherText, key):
     return result
 
 
-# 🔹 Test du chiffrement et déchiffrement
+# Test du chiffrement et déchiffrement
 message = "HELLO RAILFENCE"
 key = 3
 
