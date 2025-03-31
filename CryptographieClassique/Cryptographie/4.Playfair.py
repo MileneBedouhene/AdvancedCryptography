@@ -89,34 +89,29 @@ def playfair_decrypt(cipher_text, key):
     return message
 
 # Menu principal
-while True:
-    print("-" * 50)
-    print("1. Chiffrer un texte avec Playfair.")
-    print("2. Déchiffrer un texte avec Playfair.")
-    print("3. Quitter.")
-    print("-" * 50)
+
+print("-" * 50)
+print("1. Chiffrer un texte avec Playfair.")
+print("2. Déchiffrer un texte avec Playfair.")
+print("3. Quitter.")
+print("-" * 50)
     
-    try:
-        choix = int(input("Veuillez choisir une option : "))
-    except ValueError:
-        print("Veuillez entrer un nombre valide.")
-        continue
+
+choix = int(input("Veuillez choisir une option : "))
+
+if choix == 1:
+    texte = input("Entrez le texte à chiffrer : ")
+    clef = input("Entrez la clé de chiffrement : ")
+    resultat = playfair_encrypt(texte, clef)
+    print(f"Texte chiffré : {resultat}")
     
-    if choix == 1:
-        texte = input("Entrez le texte à chiffrer : ")
-        clef = input("Entrez la clé de chiffrement : ")
-        resultat = playfair_encrypt(texte, clef)
-        print(f"Texte chiffré : {resultat}")
+elif choix == 2:
+    texte = input("Entrez le texte à déchiffrer : ")
+    clef = input("Entrez la clé de déchiffrement : ")
+    resultat = playfair_decrypt(texte, clef)
+    print(f"Texte déchiffré : {resultat}")
     
-    elif choix == 2:
-        texte = input("Entrez le texte à déchiffrer : ")
-        clef = input("Entrez la clé de déchiffrement : ")
-        resultat = playfair_decrypt(texte, clef)
-        print(f"Texte déchiffré : {resultat}")
-    
-    elif choix == 3:
+elif choix == 3:
         print("Au revoir!")
-        break
+        
     
-    else:
-        print("Option invalide. Veuillez choisir entre 1, 2 ou 3.")

@@ -53,3 +53,4 @@ message_dechiffre = dechiffrer_hill(message_chiffre, cle)
 
 print(f"Message chiffré: {message_chiffre}")
 print(f"Message déchiffré: {message_dechiffre}")
+

@@ -73,3 +73,4 @@ if __name__ == '__main__':
 
     texte_dechiffre = affine_decrypt(texte_chiffre, a, b)
     print("Texte déchiffré :", texte_dechiffre)
+

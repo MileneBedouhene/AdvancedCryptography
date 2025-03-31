@@ -63,52 +63,41 @@ def vigenere_dechiffre(cipher_text, key):
 
 
 # Menu principal
-while True:
+
+print("-" * 50)
+print("1. Chiffrer un texte.")
+print("2. Déchiffrer un texte.")
+print("3. Quitter.")
+print("-" * 50)
+
+
+print("-" * 50)
+choix = int(input("Veuillez choisir une option : "))
+print("-" * 50)
+
+if choix == 1:
     print("-" * 50)
-    print("1. Chiffrer un texte.")
-    print("2. Déchiffrer un texte.")
-    print("3. Quitter.")
+    texte = input("Entrez le texte à chiffrer : ")
     print("-" * 50)
-
-    try:
-        print("-" * 50)
-        choix = int(input("Veuillez choisir une option : "))
-        print("-" * 50)
-    except ValueError:
-        print("-" * 50)
-        print("Veuillez entrer un nombre valide.")
-        print("-" * 50)
-        continue
-
-    if choix == 1:
-        print("-" * 50)
-        texte = input("Entrez le texte à chiffrer : ")
-        print("-" * 50)
-        clef = input("Entrez la clé de chiffrement (mot) : ")
-        print("-" * 50)
-        resultat = vigenere_chiffre(texte, clef)
-        print("-" * 50)
-        print(f"Texte chiffré : {resultat}")
-        print("-" * 50)
+    clef = input("Entrez la clé de chiffrement (mot) : ")
+    print("-" * 50)
+    resultat = vigenere_chiffre(texte, clef)
+    print("-" * 50)
+    print(f"Texte chiffré : {resultat}")
+    print("-" * 50)
     
-    elif choix == 2:
-        print("-" * 50)
-        texte = input("Entrez le texte à déchiffrer : ")
-        print("-" * 50)
-        clef = input("Entrez la clé de déchiffrement (mot) : ")
-        print("-" * 50)
-        resultat = vigenere_dechiffre(texte, clef)
-        print("-" * 50)
-        print(f"Texte déchiffré : {resultat}")
-        print("-" * 50)
+elif choix == 2:
+    print("-" * 50)
+    texte = input("Entrez le texte à déchiffrer : ")
+    print("-" * 50)
+    clef = input("Entrez la clé de déchiffrement (mot) : ")
+    print("-" * 50)
+    resultat = vigenere_dechiffre(texte, clef)
+    print("-" * 50)
+    print(f"Texte déchiffré : {resultat}")
+    print("-" * 50)
     
-    elif choix == 3:
-        print("-" * 50)
-        print("Au revoir!")
-        print("-" * 50)
-        break
-
-    else:
-        print("-" * 50)
-        print("Option invalide. Veuillez choisir entre 1, 2 ou 3.")
-        print("-" * 50)
+elif choix == 3:
+    print("-" * 50)
+    print("Au revoir!")
+    print("-" * 50)
