@@ -27,6 +27,6 @@ def indice_coincidence(text):
 
 # Exemple d'utilisation
 if __name__ == '__main__':
-    texte_exemple = "Là plùs béllè pérsònné âù mónde, ç'est tɔî."
+    texte_exemple = "La Cryptographie est l'art de coder et décoder des messages. C'est une discipline fascinante qui remonte à l'Antiquité."
     ic = indice_coincidence(texte_exemple)
     print(f"Indice de coïncidence : {ic:.4f}")

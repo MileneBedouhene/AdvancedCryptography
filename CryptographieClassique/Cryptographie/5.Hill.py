@@ -47,7 +47,7 @@ def dechiffrer_hill(texte, cle):
 
 # Exemple d'utilisation
 cle = np.array([[6, 24, 1], [13, 16, 10], [20, 17, 15]])  # Matrice clé 3x3
-message = "Milene"
+message = "Chiffrement De Hill"
 message_chiffre = chiffrer_hill(message, cle)
 message_dechiffre = dechiffrer_hill(message_chiffre, cle)
 
